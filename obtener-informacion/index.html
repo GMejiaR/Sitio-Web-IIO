@@ -1336,6 +1336,14 @@ html #iio-art .iio-art-body blockquote::before,html #iio-art .iio-art-body block
       form.reset();
     }
 
+    /* ActiveCampaign (vía función serverless en Vercel): en paralelo,
+       nunca bloquea ni condiciona la descarga del PDF */
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function(){});
+
     if(!ENDPOINT){
       /* Sin endpoint configurado: igual entregamos el PDF */
       finish();

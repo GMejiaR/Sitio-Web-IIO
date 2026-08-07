@@ -1972,6 +1972,11 @@ function pgLeadInit(){
       fecha: new Date().toISOString()
     };
     function finish(){ btn.disabled=false; btn.classList.remove('loading'); form.style.display='none'; done.classList.add('on'); }
+
+    /* ActiveCampaign (vía función serverless en Vercel): en paralelo,
+       nunca bloquea ni condiciona la confirmación al usuario */
+    fetch('/api/lead', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)}).catch(function(){});
+
     if(!ENDPOINT){ finish(); return; }
     fetch(ENDPOINT, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(payload)})
       .then(finish).catch(finish);
