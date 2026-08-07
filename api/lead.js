@@ -1,8 +1,9 @@
 // Función serverless (Vercel) que recibe los envíos de los formularios del sitio
 // (Obtener Información + solicitud de información de cada postgrado) y los
-// sincroniza con ActiveCampaign: crea/actualiza el contacto, lo agrega a la
-// lista IIO, guarda el programa de interés y el mensaje, y crea un Trato en
-// el pipeline "IIO 2026" en la etapa "Interesado - Cola de Asesor".
+// sincroniza con ActiveCampaign: crea/actualiza el contacto (con su carrera
+// de interés, teléfono y correo), lo agrega a la lista IIO, y crea un Trato
+// en el pipeline "IIO 2026", etapa "Información Sitio Web", asignado a
+// Gabriel Mejía.
 //
 // Variables de entorno requeridas (configurar en Vercel → Settings →
 // Environment Variables, NUNCA en el código):
@@ -14,7 +15,8 @@ const AC_LIST_ID = '198';        // Lista "IIO"
 const AC_FIELD_CAREER = '36';    // Campo "career"
 const AC_FIELD_MESSAGE = '129';  // Campo "Mensaje o descripción breve"
 const AC_PIPELINE_ID = '221';    // Pipeline "IIO 2026"
-const AC_STAGE_ID = '2024';      // Etapa "Interesado - Cola de Asesor"
+const AC_STAGE_ID = '2278';      // Etapa "Información Sitio Web"
+const AC_DEAL_OWNER = '116';     // Gabriel Mejía (iio5)
 
 function splitName(fullName) {
   const parts = (fullName || '').trim().split(/\s+/);
@@ -85,7 +87,7 @@ module.exports = async (req, res) => {
     // 3) crear el trato en el pipeline "IIO 2026"
     const dealTitle = `${nombre || email} - ${programa || 'Programa IIO'}`.slice(0, 250);
     const deal = await acRequest(AC_API_URL, AC_API_TOKEN, 'POST', '/deals', {
-      deal: { title: dealTitle, contact: contactId, group: AC_PIPELINE_ID, stage: AC_STAGE_ID, value: 0, currency: 'gtq' },
+      deal: { title: dealTitle, contact: contactId, group: AC_PIPELINE_ID, stage: AC_STAGE_ID, owner: AC_DEAL_OWNER, value: 0, currency: 'gtq' },
     });
 
     res.status(200).json({ ok: true, contactId, dealId: deal.data.deal && deal.data.deal.id });
