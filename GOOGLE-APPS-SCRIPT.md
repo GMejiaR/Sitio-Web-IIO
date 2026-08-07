@@ -23,7 +23,7 @@ Toma unos 10 minutos y es gratis.
 // ==== CONFIGURACIÓN ====
 // Correo(s) que reciben el aviso de cada nueva solicitud.
 // Para varios, sepáralos con coma: 'uno@galileo.edu,dos@galileo.edu'
-var AVISAR_A = 'iio@galileo.edu';
+var AVISAR_A = 'iio@galileo.edu,gabriel.mejia@galileo.edu';
 
 // Nombre de la pestaña donde se guardan los datos.
 var HOJA = 'Solicitudes';
