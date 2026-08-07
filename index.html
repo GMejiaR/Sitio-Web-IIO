@@ -989,6 +989,14 @@ html #iio-art .iio-art-body blockquote::before,html #iio-art .iio-art-body block
 .iio-slide-bg{transform:scale(1.18);transition:none;}
 .iio-slide.active .iio-slide-bg{animation:iioKenBurns 7s ease-out forwards;}
 @keyframes iioKenBurns{from{transform:scale(1.18)}to{transform:scale(1.28)}}
+/* Slide con foto grupal: en vez de acercar (como las demas), aleja un poco
+   para que las 5 personas quepan sin que la tarjeta tape a nadie */
+.iio-slide-group .iio-slide-bg{transform:scale(.889);}
+.iio-slide-group.active .iio-slide-bg{animation:iioKenBurnsGroup 7s ease-out forwards;}
+@keyframes iioKenBurnsGroup{from{transform:scale(.86)}to{transform:scale(.92)}}
+.iio-slide-group2 .iio-slide-bg{transform:scale(1.068);}
+.iio-slide-group2.active .iio-slide-bg{animation:iioKenBurnsGroup2 7s ease-out forwards;}
+@keyframes iioKenBurnsGroup2{from{transform:scale(1.04)}to{transform:scale(1.1)}}
 .iio-slide-box{opacity:0;}
 .iio-slide.active .iio-slide-box{animation:iioSlideIn .75s ease forwards;}
 @keyframes iioSlideIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
@@ -1045,8 +1053,8 @@ html #iio-art .iio-art-body blockquote::before,html #iio-art .iio-art-body block
 </div>
 
 <!-- Slide 5 -->
-<div class="iio-slide" style="--tint:#050f2e;">
-  <div class="iio-slide-bg" style="background-image:url('/assets/vendor/www.galileo.edu/iio/files/2026/07/Externo-2.jpg');transform-origin:38% 42%;"></div>
+<div class="iio-slide iio-slide-group2" style="--tint:#050f2e;">
+  <div class="iio-slide-bg" style="background-image:url('/assets/vendor/www.galileo.edu/iio/files/2026/07/Externo-2.jpg');transform-origin:-575% 45%;"></div>
   <div class="iio-slide-overlay"></div>
   <div class="iio-slide-content">
     <div class="iio-slide-box">
@@ -1057,8 +1065,8 @@ html #iio-art .iio-art-body blockquote::before,html #iio-art .iio-art-body block
   </div>
 </div>
 <!-- Slide 6 -->
-<div class="iio-slide" style="--tint:#0b3a91;">
-  <div class="iio-slide-bg" style="background-image:url('/assets/vendor/www.galileo.edu/iio/files/2026/04/Externo-3.png');transform-origin:72% 40%;"></div>
+<div class="iio-slide iio-slide-group" style="--tint:#0b3a91;">
+  <div class="iio-slide-bg" style="background-image:url('/assets/vendor/www.galileo.edu/iio/files/2026/04/Externo-3.png');transform-origin:372% 40%;"></div>
   <div class="iio-slide-overlay"></div>
   <div class="iio-slide-content">
     <div class="iio-slide-box">
