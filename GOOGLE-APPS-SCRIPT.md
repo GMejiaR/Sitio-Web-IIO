@@ -62,11 +62,17 @@ function guardar(d) {
     d.programa || '',
     d.nombre || '',
     d.email || '',
-    d.telefono || '',
+    textoSeguro(d.telefono),
     d.grado || '',
     d.mensaje || '',
     d.origen || ''
   ]);
+}
+
+// Evita que Sheets interprete un teléfono como "+502 12345678" como el
+// inicio de una fórmula (por el símbolo +) y muestre "#ERROR!".
+function textoSeguro(v) {
+  return v ? "'" + v : '';
 }
 
 function avisar(d) {
